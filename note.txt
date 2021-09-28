@@ -1,0 +1,10 @@
+###file name & kakao app key edit
+
+readHE_FinddogPage_git.js
+writeHE_FinddogPage_git.jsp
+readHE_LostDogPage_git
+writeHE_LostDogPage_git
+
+###file name & google mail key edit
+
+/Users/soos/Desktop/wpjt/reweb_sts_git/WebProject/src/main/webapp/WEB-INF/springroot-context_git.xml
