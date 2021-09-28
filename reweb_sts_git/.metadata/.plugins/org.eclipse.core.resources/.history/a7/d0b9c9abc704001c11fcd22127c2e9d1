@@ -1,0 +1,195 @@
+package com.ja.webproject.sitterboard_process.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ja.webproject.sitterboard_process.service.SitterBoard_ProcessServiceImpl;
+import com.ja.webproject.vo.HE_FinddogBoardVo;
+import com.ja.webproject.vo.HE_MemberVo;
+import com.ja.webproject.vo.HE_SitterBoardVo;
+import com.ja.webproject.vo.HE_SitterBoard_ProcessVo;
+
+@Controller
+@RequestMapping("/sitterboard_process/*")
+public class SitterBoard_ProcessController {
+	
+	@Autowired
+	private SitterBoard_ProcessServiceImpl sitterBoard_ProcessService;
+	
+	
+	
+	@RequestMapping("HE_SitterBoard_ProcessList.do")
+	public String sitterBoard_ProcessList() {
+		
+		return "sitterboard_process/HE_SitterBoard_ProcessList";
+	}
+	
+	@RequestMapping("sitterRequestComplete.do")
+	public String sitterRequestComplete() {
+		
+		return "sitterboard_process/sitterRequestComplete";
+	}
+	
+	@RequestMapping("sitterRequestFail.do")
+	public String sitterRequestFail() {
+		
+		return "sitterboard_process/sitterRequestFail";
+	}
+	
+	//==========================================================================================시터보드게시판의 신청글 클릭시================================================================
+	@RequestMapping("sitterRequest.do")
+	public String sitterRequest(String sitterboard_no, String finddogboard_no, String message) {//HE_SitterBoard_ProcessVo vo
+		
+		//System.out.println("request_0"+":"+sitterboard_no+":"+finddogboard_no+":"+message);
+		
+		int sitterboardNo = Integer.parseInt(sitterboard_no);
+		int finddogboardNo = Integer.parseInt(finddogboard_no);
+		
+		HE_SitterBoard_ProcessVo vo = new HE_SitterBoard_ProcessVo();
+		vo.setSitterboard_no(sitterboardNo);
+		vo.setFinddogboard_no(finddogboardNo);
+		vo.setMessage(message);
+		
+		int result = sitterBoard_ProcessService.checkSitterRequest(vo);
+		
+		if(result == 0) {
+			
+			try{
+				
+				sitterBoard_ProcessService.sitterRequest(vo);
+				System.out.println("request_1");
+				
+				return "redirect:../sitterboard_process/sitterRequestComplete.do";
+			}
+			catch (Exception e) {
+				
+				//System.out.println(e.getMessage());
+				
+				return "redirect:../sitterboard_process/sitterRequestFail.do";
+			}
+			
+		}else {
+			return "redirect:../sitterboard_process/sitterRequestFail.do";
+		}
+		
+		
+	}
+
+	//========================================================================마이페이지에서 시터게시판 볼때(신청)================================================================
+	
+	@RequestMapping("sitterRequestListPage.do")
+	public String sitterRequestListPage(HttpSession session, Model model){
+		
+		//HE_MemberVo memberVo = (HE_MemberVo) session.getAttribute("sessionUser");
+		
+		ArrayList<HE_FinddogBoardVo> finddogList = (ArrayList<HE_FinddogBoardVo>) session.getAttribute("finddogBoardList");
+		
+		System.out.println("find....:" + finddogList);
+		
+		ArrayList<HashMap<HE_FinddogBoardVo,ArrayList<HE_SitterBoard_ProcessVo>>> sitterRequestList = sitterBoard_ProcessService.sitterRequestListPage(finddogList);
+		
+		System.out.println("sitter:" + sitterRequestList);
+		
+		model.addAttribute("sitterRequestList", sitterRequestList);
+		
+		return "sitterboard_process/sitterRequestListPage";
+		
+	}
+	
+	//=====================신청 취소 
+	@RequestMapping("cancelSitterRequest.do")
+	public String cancelSitterRequest(String sitterboard_process_no) {
+		
+		//System.out.println("cancle:"+sitterboard_process_no);
+		
+		int no = Integer.parseInt(sitterboard_process_no);
+		sitterBoard_ProcessService.cancelSitterRequest(no);
+	
+		
+		return "redirect:../sitterboard_process/sitterRequestListPage.do";
+	}
+	
+	
+	
+	
+	//========================================================================마이페이지에서 시터게시판 볼때(수락)================================================================
+	@RequestMapping("sitterAcceptListPage.do")
+	public String sitterAcceptListPage(HttpSession session, Model model){
+		
+		HE_MemberVo vo = (HE_MemberVo) session.getAttribute("sessionUser");
+		
+	
+		
+		ArrayList<HashMap<HE_SitterBoardVo, ArrayList<HE_SitterBoard_ProcessVo>>> sitterAcceptList = sitterBoard_ProcessService.sitterAcceptListPage(vo);
+		
+		model.addAttribute("sitterAcceptList", sitterAcceptList);
+		
+		System.out.println(sitterAcceptList.size());
+		
+		return "sitterboard_process/sitterAcceptListPage";
+		
+	}
+	
+	
+	@RequestMapping("sittetAccept.do")
+	public String sittetAccept(HE_SitterBoard_ProcessVo vo) {
+		
+		
+		
+		return "redirect:../sitterboard_process/sitterAcceptListPage.do";
+	}
+	
+	
+	
+	
+	/*
+	 update HE_SitterBoard_Process
+	 set status= 'N'
+	 where
+	 sitterboard_no = #{sitterboard_no}
+	 and
+	 finddogboard_no != #{finddogboard_no}
+
+	 */
+	
+	
+	
+	
+	
+	
+	//=====================수락 거절  
+	@RequestMapping("cancelSitterAccept.do")
+	public String cancelSitterAccept(String sitterboard_process_no) {
+		
+		//System.out.println("cancle:"+sitterboard_process_no);
+		
+		int no = Integer.parseInt(sitterboard_process_no);
+		sitterBoard_ProcessService.cancelSitterAccept(no);
+	
+		
+		return "redirect:../sitterboard_process/sitterAcceptListPage.do";
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

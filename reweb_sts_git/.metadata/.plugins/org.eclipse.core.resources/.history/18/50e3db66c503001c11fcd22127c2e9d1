@@ -1,0 +1,14 @@
+package com.ja.webproject.vo;
+
+public class HE_SitterBoard_ProcessVo {
+	
+	private int sitterboard_process_no;
+	private int sitterboard_no NUMBER,
+	private int finddogboard_no NUMBER,
+		    message VARCHAR2(4000),
+		    acceptDate DATE,
+		    status VARCHAR2(100),
+		    readcount NUMBER,
+		    writeDate DATE
+
+}

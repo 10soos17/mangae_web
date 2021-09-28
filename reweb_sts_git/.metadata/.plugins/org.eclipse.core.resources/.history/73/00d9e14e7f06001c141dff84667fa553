@@ -1,0 +1,30 @@
+package com.ja.webproject.mypage.mapper;
+
+import com.ja.webproject.vo.HE_MailAuthVo;
+import com.ja.webproject.vo.HE_MemberVo;
+
+public interface MyPageSQLMapper {
+	
+	
+	public void editMyId(HE_MemberVo vo);
+	
+	public void editMyNick(HE_MemberVo vo);
+
+	public void editMyBirth(HE_MemberVo vo);
+	
+	public void editMyPetName(HE_MemberVo vo);
+	
+	public int checkBeforePw(HE_MemberVo vo);
+	
+	public void editMyPw(HE_MemberVo vo);
+	
+	public void certifyEditMail(String mail_key);
+	
+	public void editMyAddress(HE_MemberVo vo);
+
+	public void changeMailAuthInfo(HE_MailAuthVo mailAuthVo);
+	
+	public void editMyEmail(HE_MemberVo vo);
+	
+
+}

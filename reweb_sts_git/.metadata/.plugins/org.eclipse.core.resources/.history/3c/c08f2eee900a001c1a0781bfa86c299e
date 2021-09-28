@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+
+
+<!-- custom css -->
+<link rel="stylesheet" type="text/css" href="../resources/css/side.css">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" >
+          <div class="list-group">
+            <a href="#" class="list-group-item active" id="sideFirst" style="background-color:#090721 ;color:#b7dee2;border:0px;">Link</a>
+            <a href="#" class="list-group-item active" id="sideSecond" style="background-color:#090721 ;color:#b7dee2;">Link</a>
+            <a href="#" class="list-group-item active" id="sideThird" style="background-color:#090721 ;color:#b7dee2;">Link</a>
+            <a href="#" class="list-group-item active" id="sideFour" style="background-color:#090721 ;color:#b7dee2;">Link</a>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+
+      
+      
+      

@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
+<!-- custom css -->
+<link rel="stylesheet" type="text/css" href="../resources/css/side.css">
+    <!-- Bootstrap core CSS -->
+<link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+crossorigin="anonymous">
+
+
+	<div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <!--a href="#" class="list-group-item active" id="sideFirst">Link</a-->
+            <input type="button"
+            class="list-group-item active" id="sideFirst" 
+            value="Link"
+            onclick="testModal()"
+            style="active;">
+            
+            
+            <a href="#" class="list-group-item active" id="sideSecond">Link</a>
+            <a href="#" class="list-group-item active" id="sideThird">Link</a>
+            <a href="#" class="list-group-item active" id="sideFour">Link</a>
+          </div>
+        </div><!--/.sidebar-offcanvas-->
+      </div><!--/row-->
+      
+      

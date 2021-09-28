@@ -1,0 +1,13 @@
+package com.ja.webproject.mypage.mapper;
+
+import com.ja.webproject.vo.HE_MemberVo;
+
+public interface MyPageSQLMapper {
+	
+	
+	public void editMyId(HE_MemberVo vo);
+	
+	public void editMyNick(HE_MemberVo vo);
+
+
+}

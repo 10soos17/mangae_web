@@ -1,0 +1,28 @@
+package com.ja.webproject.sitterboard_process.mapper;
+
+import java.util.ArrayList;
+
+import com.ja.webproject.vo.HE_FinddogBoardVo;
+import com.ja.webproject.vo.HE_MemberVo;
+import com.ja.webproject.vo.HE_SitterBoardVo;
+import com.ja.webproject.vo.HE_SitterBoard_ProcessVo;
+
+
+public interface SitterBoard_ProcessSQLMapper {
+	
+	
+	public int checkSitterRequest(HE_SitterBoard_ProcessVo vo);
+	public void sitterRequest(HE_SitterBoard_ProcessVo vo);
+	
+	public ArrayList<HE_SitterBoard_ProcessVo> sitterRequestListPage(HE_FinddogBoardVo vo);
+	
+	
+	public ArrayList<HE_SitterBoardVo> getMySitterBoardList(HE_MemberVo vo);
+	public ArrayList<HE_SitterBoard_ProcessVo> sitterAcceptListPage(HE_SitterBoardVo vo);
+	
+	
+
+	
+	
+
+}

@@ -1,0 +1,5 @@
+package com.ja.webproject.finddogboard.service;
+
+public class MyPageServiceImpl {
+
+}

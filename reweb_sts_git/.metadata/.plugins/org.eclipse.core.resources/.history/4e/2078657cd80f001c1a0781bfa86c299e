@@ -1,0 +1,76 @@
+﻿/* 전체 */
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+	font-size: 3.5rem;
+	}
+}
+/*custom color setting*/
+
+body{/*body base*/
+	background-color:white;
+}
+
+
+#header_top{
+	
+	 background-color:#eaeaea;
+}
+
+#header_one{
+   
+   background-color:#eaeaea;
+   color:#090721;
+   position:fixed;
+   z-index:2;
+   margin-bottom:10px;
+   
+  
+}
+
+
+#header_two{
+   
+
+   background-color:#090721;
+   color:white;
+   position:fixed;
+   z-index:1;
+   margin-top:50px;
+  
+}
+
+
+#dropdown_background{ /*droupdown menu backgorund*/
+	background-color:#090721;
+}
+#dropdown_background:active{
+	background-color:#090721;
+	
+}
+   
+.navbar .navbar-collapse{
+	
+	justify-content: center;
+}
+
+.nav-link{
+	background-color:#090721;
+
+	margin-left: 80px;
+	font-size: 15px;
+	
+}
+.navbar-brand-md{
+	font-size:30px;
+	margin-left: 20px;
+}
+

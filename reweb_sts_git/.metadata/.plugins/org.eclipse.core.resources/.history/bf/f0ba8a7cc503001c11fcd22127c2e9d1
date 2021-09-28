@@ -1,0 +1,20 @@
+package com.ja.webproject.vo;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class HE_SitterBoard_ProcessVo {
+	
+	private int sitterboard_process_no;
+	private int sitterboard_no;
+	private int finddogboard_no;
+	private String message;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date acceptDate;
+	private String status;
+	private int readcount;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date writeDate;
+
+}

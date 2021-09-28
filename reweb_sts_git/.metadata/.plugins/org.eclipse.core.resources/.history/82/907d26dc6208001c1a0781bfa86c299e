@@ -1,0 +1,65 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+<!--script src="../resources/js/notePage.js"></script-->
+
+<!DOCTYPE html>
+					
+							<!-- -------------- modal1 ------------------ -->
+							<!-- group -->
+							<div id="groupModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+										
+											<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+											
+											<h4 class="modal-title" id="myModalLabel">그룹 편집</h4>
+											
+										</div>
+										
+										<div class="modal-body">
+											
+											<form action="../member/deleteGroupProcess.do" method="post">
+												<input type="hidden" name="before_grouplist_no" id="delete_group_no" value="">
+		 										<!--button type="submit" class="btn btn-primary">삭제</button-->
+		 										<button value="삭제" style="background-color:rgb(0,0,0,0); border:0px;">
+													<i class="people-dash">-</i>
+												</button>
+											</form>
+												
+											<form action="../member/updateGroupProcess.do" method="post">
+												그룹명 변경: 
+												<input type="hidden" name="grouplist_no" id="grouplist_no" value="">
+												<input type="text" name="group_name" id="group_name" value="">
+												<!--button type="submit" class="btn btn-primary">확인</button-->
+												<button value="확인" style="background-color:rgb(0,0,0,0); border:0px;">
+													<i class="bi-check" style="font-size: 3rem; color:gray;"></i>
+												</button>
+											</form>
+												
+										</div>
+										
+										
+										
+									</div>
+								</div>
+							</div>
+							
+							<!-- Modal window option script -->
+							<script>
+								$('#groupModal').on('show.bs.modal', function (event) { // groupModal 윈도우가 오픈할때 아래의 옵션을 적용
+								  var button = $(event.relatedTarget); // 모달 윈도우를 오픈하는 버튼
+								  var groupNo = button.data('title'); // 버튼에서 data-title 값을 변수에 저장
+								  var groupName = button.data('value'); // 버튼에서 data-value 값을 변수에 저장
+								  var modal = $(this);
+								  modal.find('.modal-title').text('Group_' + groupName); // 모달위도우에서 .modal-title을 찾아 groupName 값으로 치환
+								  document.querySelector("#delete_group_no").value = groupNo;
+								  document.querySelector("#grouplist_no").value = groupNo;
+								  document.querySelector("#group_name").value = groupName;
+								})
+							</script>

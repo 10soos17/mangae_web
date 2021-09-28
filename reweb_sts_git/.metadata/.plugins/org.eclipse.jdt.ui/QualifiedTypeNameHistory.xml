@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.ja.webproject.noticeboard.service.NoticeBoardServiceImpl"/>
+<fullyQualifiedTypeName name="com.ja.webproject.sitterboard.service.SitterBoardServiceImpl"/>
+<fullyQualifiedTypeName name="com.ja.webproject.commons.MessageDigestUtil"/>
+<fullyQualifiedTypeName name="com.ja.webproject.shop.main.service.MainServiceImpl"/>
+<fullyQualifiedTypeName name="com.ja.webproject.shop.product.service.ProductServiceImpl"/>
+<fullyQualifiedTypeName name="com.ja.webproject.vo.shop.ProductVo"/>
+<fullyQualifiedTypeName name="com.ja.webproject.vo.shop.BuyVo"/>
+<fullyQualifiedTypeName name="com.ja.webproject.vo.HE_MailAuthVo"/>
+<fullyQualifiedTypeName name="com.ja.webproject.shop.store.mapper.StoreSQLMapper"/>
+<fullyQualifiedTypeName name="com.ja.webproject.shop.main.mapper.MainSQLMapper"/>
+<fullyQualifiedTypeName name="com.ja.webproject.shop.product.mapper.ProductSQLMapper"/>
+<fullyQualifiedTypeName name="com.ja.webproject.shop.store.service.StoreServiceImpl"/>
+<fullyQualifiedTypeName name="com.ja.webproject.vo.shop.StoreVo"/>
+<fullyQualifiedTypeName name="com.ja.webproject.vo.HE_MemberVo"/>
+<fullyQualifiedTypeName name="com.ja.webproject.vo.HE_OwnerBoardVo"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="com.ja.webproject.ownerboard.mapper.OwnerBoardSQLMapper"/>
+</qualifiedTypeNameHistroy>

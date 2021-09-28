@@ -1,0 +1,8 @@
+INDEX VERSION 1.4+/Users/soos/Desktop/wpjt/reweb_sts/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes
+1253612072.index
+2932757273.index
+2636870526.index
+3698524909.index
+706360652.index
+1737204135.index
+1412931527.index

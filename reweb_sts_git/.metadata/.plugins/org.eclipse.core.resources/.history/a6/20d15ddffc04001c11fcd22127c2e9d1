@@ -1,0 +1,15 @@
+//===================================species selectlist===================================
+function selectSpecies(pet){
+	pet_no = $("#species_selectList").find(":selected").val();
+	console.log(pet_no);
+	$("#species_no").attr("value", pet_no);
+	console.log($('#species_no').val());
+}
+
+function cancelFinddog(btn){
+	console.log(btn.value);
+	
+	 $("#FinddogStatusBtn").attr("value","취소완료상태");
+	 $("#FinddogCancelBtn").attr("disabled", true);
+
+}

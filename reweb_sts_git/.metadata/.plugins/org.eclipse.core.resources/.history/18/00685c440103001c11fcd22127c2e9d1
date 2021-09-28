@@ -1,0 +1,10 @@
+package com.ja.webproject.mypage.mapper;
+
+import com.ja.webproject.vo.HE_MemberVo;
+
+public interface MyPageSQLMapper {
+	
+	
+	public void editMyId(@Param("member_no") int member_no, @Param("id")String id);
+
+}

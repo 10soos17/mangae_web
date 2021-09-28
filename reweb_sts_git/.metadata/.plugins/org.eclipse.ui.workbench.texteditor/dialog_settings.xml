@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="setI"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="setI"/>
+			<item value="set"/>
+			<item value="s"/>
+			<item value="sendMessage"/>
+			<item value="content"/>
+			<item value="history"/>
+			<item value="sendNote"/>
+			<item value="currentOwner"/>
+			<item value="completeFinddog"/>
+			<item value="send"/>
+			<item value="sendMessageToOwner_Modal"/>
+			<item value="sendMessageToOwner_Modal.show"/>
+			<item value="openMessageToOwner_Moda"/>
+			<item value="show"/>
+			<item value="adminToastPlacement"/>
+		</list>
+		<list key="replacehistory">
+			<item value="/shop/board/"/>
+			<item value="13px"/>
+			<item value="333333"/>
+			<item value="#909090"/>
+			<item value="#D8D8D8"/>
+			<item value="20px"/>
+			<item value="#282828"/>
+			<item value="15px"/>
+			<item value="color:#000000"/>
+			<item value="#000000"/>
+			<item value="black"/>
+			<item value="white"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1063"/>
+		<item key="DIALOG_Y_ORIGIN" value="513"/>
+		<item key="DIALOG_WIDTH" value="294"/>
+		<item key="DIALOG_HEIGHT" value="408"/>
+		<item key="DIALOG_FONT_NAME" value="1|.AppleSystemUIFont|11.0|0|COCOA|1|.AppleSystemUIFont"/>
+	</section>
+</section>

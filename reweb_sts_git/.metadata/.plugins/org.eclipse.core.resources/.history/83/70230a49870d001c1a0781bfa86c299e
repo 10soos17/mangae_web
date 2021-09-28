@@ -1,0 +1,198 @@
+package com.ja.webproject.sitterboard_process.service;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ja.webproject.sitterboard_process.mapper.SitterBoard_ProcessSQLMapper;
+import com.ja.webproject.vo.HE_FinddogBoardVo;
+import com.ja.webproject.vo.HE_MemberVo;
+import com.ja.webproject.vo.HE_SitterBoardVo;
+import com.ja.webproject.vo.HE_SitterBoard_ProcessVo;
+
+@Service
+public class SitterBoard_ProcessServiceImpl {
+
+	
+	@Autowired
+	private SitterBoard_ProcessSQLMapper sitterBoard_ProcessSQLMapper;
+	
+	//==========================================================================================시터보드게시판의 신청글 클릭시==================================================
+	public int checkSitterRequest(HE_SitterBoard_ProcessVo vo) {
+		int result = sitterBoard_ProcessSQLMapper.checkSitterRequest(vo);
+		return result;
+		
+	}
+	
+	public void sitterRequest(HE_SitterBoard_ProcessVo vo){
+		
+		sitterBoard_ProcessSQLMapper.sitterRequest(vo);
+		
+	}
+	
+	//========================================================================마이페이지에서 시터게시판 볼때(신청)================================================================
+	
+	public ArrayList<HashMap<HE_FinddogBoardVo, ArrayList<HE_SitterBoard_ProcessVo>>> sitterRequestListPage(ArrayList<HE_FinddogBoardVo> finddogList){
+		
+		ArrayList<HashMap<HE_FinddogBoardVo, ArrayList<HE_SitterBoard_ProcessVo>>> topList = new ArrayList<HashMap<HE_FinddogBoardVo,ArrayList<HE_SitterBoard_ProcessVo>>>();
+		
+		
+		for(HE_FinddogBoardVo vo : finddogList) {
+			
+			
+			try {
+				
+				
+				ArrayList<HE_SitterBoard_ProcessVo> list= sitterBoard_ProcessSQLMapper.sitterRequestListPage(vo);
+				
+				if(list.size() == 0) {
+					continue;
+					
+				}else if(list.size() > 1){
+					ArrayList<HE_SitterBoard_ProcessVo> requestList= new ArrayList<HE_SitterBoard_ProcessVo>();
+					
+					for(int i = 0; list.size() < i; i++) {
+						
+						if( i % 2 == 1) {//권한 여러번 바뀐 경우, 새 시터에게 권한 넘긴(신청한) 경우만 거르기 
+							
+							requestList.add(list.get(i));
+					
+							HashMap<HE_FinddogBoardVo,ArrayList<HE_SitterBoard_ProcessVo>> map = new HashMap<HE_FinddogBoardVo,ArrayList<HE_SitterBoard_ProcessVo>>();
+							map.put(vo, requestList);
+							topList.add(map);
+							
+						}else {
+							
+						}
+					}
+
+				}
+				else {
+					HashMap<HE_FinddogBoardVo,ArrayList<HE_SitterBoard_ProcessVo>> map = new HashMap<HE_FinddogBoardVo,ArrayList<HE_SitterBoard_ProcessVo>>();
+					map.put(vo, list);
+					topList.add(map);
+				}
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+			
+			
+		}
+	
+		
+		return topList;
+	}
+	
+	//=======================신청 취소
+	public  void cancelSitterRequest(int no) {
+		
+		sitterBoard_ProcessSQLMapper.cancelSitterRequest(no);
+	}
+	
+	
+	
+	
+	//========================================================================마이페이지에서 시터게시판 볼때(수락)================================================================
+	
+	public  ArrayList<HashMap<HE_SitterBoardVo, ArrayList<HE_SitterBoard_ProcessVo>>> sitterAcceptListPage(HE_MemberVo vo){
+		
+		
+		ArrayList<HashMap<HE_SitterBoardVo, ArrayList<HE_SitterBoard_ProcessVo>>> topList = new ArrayList<HashMap<HE_SitterBoardVo, ArrayList<HE_SitterBoard_ProcessVo>>>();
+		
+		
+		ArrayList<HE_SitterBoardVo> mySitterList = sitterBoard_ProcessSQLMapper.getMySitterBoardList(vo);
+		
+		
+		for(HE_SitterBoardVo sitterVo : mySitterList) {
+			
+			
+			try {
+				
+				ArrayList<HE_SitterBoard_ProcessVo> mySitterAcceptList = sitterBoard_ProcessSQLMapper.sitterAcceptListPage(sitterVo);
+				
+				if(mySitterAcceptList.size() == 0) {
+					continue;
+				}else {
+					HashMap<HE_SitterBoardVo,ArrayList<HE_SitterBoard_ProcessVo>> map = new HashMap<HE_SitterBoardVo, ArrayList<HE_SitterBoard_ProcessVo>>();
+					
+					map.put(sitterVo, mySitterAcceptList);
+					topList.add(map);
+				}
+				
+			} catch (Exception e) {
+				
+				System.out.println(e.getMessage());
+				
+			}
+			
+			
+		}
+		//topList.add(map);
+		
+		return topList;
+	}
+	
+	
+	//=======================수락 거절
+	public  void cancelSitterAccept(int no) {
+		
+		sitterBoard_ProcessSQLMapper.cancelSitterAccept(no);
+	}
+	
+	
+	//========================================================================수락버튼 클릭 시, status 변경 ========================================================================
+	//=======================1. sitterboard에 글 올린 시터인 사람이 여러 사람으로부터 신청받은 경우, 해당 수락한 글 제외하고 거절상태로 변경
+	public void change_StatusNo_AcceptAll(HE_MemberVo memberVo, HE_SitterBoard_ProcessVo sitterProcessVo) {
+		
+		System.out.println("상태변경1-내가받은 모든 요청에 대하여 거절");
+		//본인이 시터 요청 받은 모든 글 
+		ArrayList<HE_SitterBoardVo> sitterList = sitterBoard_ProcessSQLMapper.getMySitterBoardList(memberVo);
+		
+		//시터 요청을 수락한 글의 sitterboard_no  
+		int thisSitterboard_no = sitterProcessVo.getSitterboard_no();
+		
+		//루프 돌면서, 
+		for(HE_SitterBoardVo vo : sitterList) {
+			
+			int sitterboard_no = vo.getSitterboard_no();
+			
+			System.out.println("loop: " + sitterboard_no );
+			
+			//자신이 요청 받은 글의 sitterboard_no != 방금 수락한 글 sitterboard_no, status = 'N'으로 바꿔주기
+			if(sitterboard_no != thisSitterboard_no) {
+				
+				System.out.println("수락한 글이 아님: " + sitterboard_no + ":" + thisSitterboard_no);
+				sitterBoard_ProcessSQLMapper.change_StatusNo_AcceptAll(sitterboard_no);
+			}
+			
+			
+		}
+		
+	}
+	
+	//=======================2. finddogBoard에 글 올린 사람이 여러 시터에게 신청한 경우, 해당 수락한 시터 제외하고 거절상태로 변경
+	public void change_Status(HE_SitterBoard_ProcessVo vo) {
+		
+		System.out.println("상태변경2-나의 수락과 동시에 상대방이 신청했던 모든 요청에 대하여 거절");
+		
+		//내 수락으로 인해, 해당 글의 status = 'Y'로 변경 
+		sitterBoard_ProcessSQLMapper.change_StatusYes_Accept(vo);
+		//내 수락으로 인해, 상대방이 요청했던 타 시터들에 대한 요청 자동 거절 status='N'으로 변경 
+		sitterBoard_ProcessSQLMapper.change_StatusNo_RequestAll(vo);
+	}
+
+/*	
+	//==============3.sitterboard 신청버튼 disable -> 
+	//내가 작성한 sitterboard 글로인해 받은 요청을 수락한 경우, 해당 글에서는 신청 받지 않기로!(버튼 작동 멈추게하려고)
+	public ArrayList<HE_SitterBoardVo> checkMySitterBoardBtn(){
+		
+		return sitterBoard_ProcessSQLMapper.checkMySitterBoardBtn();
+		
+	};
+	
+*/
+}

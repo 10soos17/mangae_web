@@ -1,0 +1,80 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+<title></title>
+
+<!-- custom css -->
+<link rel="stylesheet" type="text/css" href="../resources/css/loginPage.css">
+
+     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+
+
+	<!-- top menu -->
+	<jsp:include page="../include/header.jsp"></jsp:include>
+	
+	
+	<!--side menu -->
+	<jsp:include page="../include/side.jsp"></jsp:include>
+	
+
+	    
+	<main class="form-signin text-center">
+	  <form action="../main/loginProcess.do" method="post">
+	 
+	    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+	
+	    <div class="form-floating">
+	      <input type="text" class="form-control" name="id" id="floatingInput" placeholder="Id"  required autofocus>
+	      <label for="floatingInput">Id</label>
+	    </div>
+	    <div class="form-floating">
+	      <input type="password" class="form-control" name="pw" id="floatingPassword" placeholder="Password" required>
+	      <label for="floatingPassword">Password</label>
+	    </div>
+	
+	    <div class="checkbox mb-3" style="float:right;">
+	      <label>
+	        <input type="checkbox" value="remember-me" > Remember me
+	      </label>
+	    </div>
+	    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+         <label><a href="./joinMemberPage.do">회원가입</a></label>
+         <label><a href="./main.do" style="padding-left:220px;">메인</a></label>
+	    <p class="mt-5 mb-3 text-muted" style="float:right;">&copy; 2021</p>
+	  </form>
+	</main>
+ 
+
+</body>
+</html>
+

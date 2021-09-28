@@ -1,0 +1,5 @@
+package com.ja.webproject.sitterboard_process.controller;
+
+public class SitterRESTBoard_ProcessController {
+
+}

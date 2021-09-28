@@ -1,0 +1,14 @@
+package com.ja.webproject.sitterboard_process.mapper;
+
+import java.util.ArrayList;
+
+import com.ja.webproject.vo.HE_SitterBoard_ProcessVo;
+
+
+public interface SitterBoard_ProcessSQLMapper {
+	
+	public void sitterRequest(HE_SitterBoard_ProcessVo vo);
+	
+	public ArrayList<HE_SitterBoard_ProcessVo> sitterRequestListPage(HE_SitterBoard_ProcessVo vo);
+
+}

@@ -1,0 +1,40 @@
+﻿/* 전체 */
+body{
+	background-color:black;
+}
+
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
+
+@media (min-width: 768px) {
+	.bd-placeholder-img-lg {
+	font-size: 3.5rem;
+	}
+}
+#header_top{
+   
+   background-color:#59ffee;
+   color:white;
+   
+}
+   
+.navbar .navbar-collapse{
+	
+	justify-content: center;
+}
+
+.nav-link{
+	margin-left: 80px;
+	font-size: 15px;
+	
+}
+.navbar-brand-md{
+	font-size:30px;
+	margin-left: 20px;
+}
+

@@ -1,0 +1,218 @@
+
+#arrowFirst{
+	position:fixed;
+	top:35%;
+	right:5.4%;
+	
+	border-radius:0%;
+	
+}
+
+#arrowSecond{
+	position:fixed;
+	top:42%;
+	right:5%;
+	border-radius:0%;
+	
+}
+#arrowThird{
+	position:fixed;
+	top:49%;
+	right:5%;
+	border-radius:0%;
+	
+}
+/*
+#838e9f
+#838e9f
+#ff6796
+*/
+
+/*
+#b0ff00
+*/
+#sideTitle{
+	
+	position:fixed;
+	top:23%;
+	right:3%;
+	width:120px;
+	height:50px;
+	
+	
+	text-align:center;
+	font-size:25px;
+	
+	background-color:#090721;
+	color:#ff86a1;
+	
+	border-radius:20%;
+	border-width:3px;
+	border-color:#ff86a1;
+	
+}
+
+#sideFirst{
+	position:fixed;
+	top:30%;
+	right:4%;
+	width:80px;
+	height:50px;
+
+	text-align:center;
+	font-size:20px;
+	
+	background-color:#090721;
+	color:#ff86a1;
+	
+	border-radius:50%;
+	border-width:3px;
+	border-color:#ff86a1;
+	
+}
+
+#textFirst{
+	position:fixed;
+	top:31%;
+	right:9%;
+	width:200px;
+	text-align:right;
+	font-size:20px;
+	
+	border-radius:0%;
+	
+	opacity:0%;
+	z-index:0;
+}
+
+#sideFirst:hover #textFirst{
+		opacity:1;
+		z-index:2;
+	
+}
+
+#sideSecond{
+	
+	position:fixed;
+	top:37%;
+	right:4%;
+	width:80px;
+	height:50px;
+	
+	text-align:center;
+	font-size:20px;
+	
+	background-color:#090721;
+	color:#ff86a1;
+	
+	border-radius:50%;
+	border-width:3px;
+	border-color:#ff86a1;
+	
+}
+
+#textSecond{
+	position:fixed;
+	top:38%;
+	right:9%;
+	width:580px;
+	text-align:right;
+	font-size:20px;
+	
+	border-radius:0%;
+	
+	opacity:0%;
+	z-index:0;
+	
+}
+
+#sideSecond:hover #textSecond{
+		opacity:1;
+		z-index:2;
+	
+}
+
+#sideThird{
+	position:fixed;
+	top:44%;
+	right:4%;
+	width:80px;
+	height:50px;
+
+	text-align:center;
+	font-size:20px;
+	
+	background-color:#090721;
+	color:#ff86a1;
+	
+	border-radius:50%;
+	border-width:3px;
+	border-color:#ff86a1;
+	
+	
+}
+
+
+#textThird{
+	position:fixed;
+	top:45%;
+	right:9%;
+	width: 450px;
+	text-align:right;
+	font-size:20px;
+	
+	border-radius:0%;
+	
+	opacity:0%;
+	z-index:0;
+	
+}
+
+#sideThird:hover #textThird{
+		opacity:1;
+		z-index:2;
+	
+}
+
+#sideFour{
+	position:fixed;
+	top:51%;
+	right:4%;
+	width:80px;
+	height:50px;
+
+	text-align:center;
+	font-size:20px;
+	
+	background-color:#090721;
+	color:#ff86a1;
+	
+	border-radius:50%;
+	border-width:3px;
+	border-color:#ff86a1;
+	
+}
+
+
+#textFour{
+	position:fixed;
+	top:52%;
+	right:9%;
+	width:350px;
+	text-align:right;
+	font-size:20px;
+
+	
+	border-radius:0%;
+	
+	opacity:0%;
+	z-index:0;
+	
+}
+
+#sideFour:hover #textFour{
+		opacity:1;
+		z-index:2;
+	
+}
+

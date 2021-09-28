@@ -1,0 +1,5 @@
+package com.ja.webproject.vo;
+
+public class HE_SitterBoard_ProcessVo {
+
+}

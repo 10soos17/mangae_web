@@ -1,0 +1,105 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<link rel="icon" href="../../favicon.ico">
+
+<title>Carousel Template for Bootstrap</title>
+
+<!-- custom css -->
+
+<link rel="stylesheet" type="text/css"
+	href="../resources/css/loginPage.css">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+    	    <!-- Custom styles for this template -->
+	    <link href="signin.css" rel="stylesheet">
+
+     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+
+    <div class="container">
+
+      <form class="form-signin" action="../main/loginProcess.do" method="post">
+      
+        <h2 class="form-signin-heading">Please sign in</h2>
+        
+        <label for="inputEmail" class="sr-only">Id</label>
+        <input type="text" name="id" id="" class="form-control" placeholder="Id" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="pw" id="inputPassword" class="form-control" placeholder="Password" required>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      
+         <label><a href="./joinMemberPage.do">회원가입</a></label>
+         <label><a href="./main.do" style="padding-left:220px;">메인</a></label>
+         
+      </form>
+      
+     
+
+    </div> 
+ 
+
+<body class="text-center">
+	    
+	<main class="form-signin">
+	  <form action="../main/loginProcess.do" method="post">
+	  
+	    <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+	    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+	
+	    <div class="form-floating">
+	      <input type="text" class="form-control" name="id" id="floatingInput" placeholder="Id">
+	      <label for="floatingInput" required autofocus>Id</label>
+	    </div>
+	    <div class="form-floating">
+	      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+	      <label for="floatingPassword">Password</label>
+	    </div>
+	
+	    <div class="checkbox mb-3">
+	      <label>
+	        <input type="checkbox" value="remember-me"> Remember me
+	      </label>
+	    </div>
+	    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+	    <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+	  </form>
+	</main>
+ 
+
+</body>
+</html>
+
