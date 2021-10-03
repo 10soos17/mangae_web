@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>   
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script>
 var myToast = null;
@@ -15,7 +15,7 @@ var toastList = null;
 var senderList = null;
 
 
-//============= 시간 0 맞추기 
+//============= 시간 0 맞추기
 function addZero(num){
 	if(num < 10){
 		return "0" + num;
@@ -23,33 +23,35 @@ function addZero(num){
 		return num;
 	}
 }
-//============= 남은 시간 
+//============= 남은 시간
 function calTime(num){
 	var now = new Date();
 	var current = now.getTime();
+	console.log("now:",now);
 	console.log("current: ",current);
 	console.log("num: ",num);
 	console.log("now.getTime() - num:",now.getTime() - num);
-	
+
+	//console.log("year:",(1633130500000 /(3600*24*365*1000))+1970);//넘어오는 값 9시간 차이!?
+
 	var remaindSec = ((now.getTime() - num ) / 1000);
 	var remaindMin = remaindSec / 60;
-	var remaindHour = remaindMin / 60;
+	var remaindHour = (remaindMin / 60) -9;
 
-	
-	
-	//화면에 
+
+	//화면에
 	var displaySec = addZero(Math.floor(remaindSec % 60));
 	var displayMin= addZero(Math.floor(remaindMin % 60));
 	var displayHour = addZero(Math.floor(remaindHour % 24));
-	
+
 	var sec = addZero(displaySec);
 	var min = addZero(displayMin);
 	var hour = addZero(displayHour);
-	
+
 	var text = hour +"시간 " + min + "분 " + sec +"초 전";
-	
+
 	console.log("text:",text);
-	
+
 	return text;
 }
 
@@ -57,32 +59,33 @@ function calTime(num){
 //=============1. Toast
 function showToast(){
 
-	
+
 	var xmlhttp = new XMLHttpRequest();
-	
+
 	//서버에서 응답 후 처리 로직.
 	xmlhttp.onreadystatechange = function(){
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
-			
+
 			var result = JSON.parse(xmlhttp.responseText);
-			
+
 			//toastCount = result.toastList.length;
 			//console.log("size:",result.toastList.length);
-			
+
 			var toastListBox = document.getElementById("toastBody");
-			
+
 			//초기화
 			toastListBox.innerHTML = "";
-			
+
 			for(var i=0; i < result.toastList.length; i++){
-				
-					
+
+
 					var elapseTime = calTime(result.toastList[i].writeDate);
-					//console.log(elapseTime);
-					
+
+					console.log("result.toastList[i].writeDate",result.toastList[i].writeDate);
+
 					//console.log("all:",result.toastList[i]);
-					
-					//=========dom 그리기 
+
+					//=========dom 그리기
 					//========================첫번째 박스===========================
 					var line = document.createElement("hr");
 
@@ -144,12 +147,12 @@ function showToast(){
 					var confirmIcon = document.createElement("i");
 					confirmIcon.setAttribute("class","bi bi-check2-square");
 					confirmIcon.setAttribute("style","font-size:20px;background-color:#ffffff;color:#5587ED;border:0px;");
-					
+
 					confirmButton.appendChild(confirmIcon);
 
 					userThird_secondBox.appendChild(confirmButton);
 
-					
+
 					//userthirdRowBox.appendChild(userThird_firstBox);
 					userthirdRowBox.appendChild(userThird_firstBox);
 					userthirdRowBox.appendChild(userThird_secondBox);
@@ -162,42 +165,42 @@ function showToast(){
 					toastListBox.appendChild(userthirdRowBox);
 					toastListBox.appendChild(line);
 					//toastListBox.scrollTop = toastListBox.scrollHeight; //가장 아래로 하는 속성 추가(스크롤)
-		
+
 				}
-			
+
 				myToast.show();
 			}
 
 	};
-	
-	xmlhttp.open("get" , "../member/getNewToast.do");   
+
+	xmlhttp.open("get" , "../member/getNewToast.do");
 	xmlhttp.send();
 
 }
 
 //=======2. admin toast
 function showAdminToast(){
-	
+
 	var xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.onreadystatechange = function(){
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 			var result = JSON.parse(xmlhttp.responseText);
-			
+
 			console.log(result.length);
-			
+
 			if(result.adminVo != undefined){
-				
+
 				var elapseTime = calTime(result.adminVo.writeDate);
 				//console.log(elapseTime);
-				
+
 				var toastListBox = document.getElementById("adminToastBody");
-				
+
 				//초기화
 				toastListBox.innerHTML = "";
-				
-				//=========dom 그리기 
-				
+
+				//=========dom 그리기
+
 				//========================첫번째 박스===========================
 				var firstRowBox = document.createElement("div");
 				firstRowBox.setAttribute("class","row mb-1");
@@ -256,12 +259,12 @@ function showAdminToast(){
 				var confirmIcon = document.createElement("i");
 				confirmIcon.setAttribute("class","bi bi-check2-square");
 				confirmIcon.setAttribute("style","font-size:20px;background-color:#E2F4FF;color:#FF6666;");
-				
+
 				confirmButton.appendChild(confirmIcon);
 
 				userThird_secondBox.appendChild(confirmButton);
 
-				
+
 				//userthirdRowBox.appendChild(userThird_firstBox);
 				userthirdRowBox.appendChild(userThird_firstBox);
 				userthirdRowBox.appendChild(userThird_secondBox);
@@ -272,9 +275,9 @@ function showAdminToast(){
 				toastListBox.appendChild(secondRowBox);
 				toastListBox.appendChild(userthirdRowBox);
 
-				adminToast.show();	
+				adminToast.show();
 			}
-			
+
 		}
 	};
 
@@ -282,12 +285,12 @@ function showAdminToast(){
 	xmlhttp.open("get" , "../member/checkAdminToast.do");
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send();
-	
+
 }
 
-//=============Toast 확인 아이콘 클릭시 
+//=============Toast 확인 아이콘 클릭시
 function confirmToast(notebox_no){
-	
+
 	var xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.onreadystatechange = function(){
@@ -303,9 +306,9 @@ function confirmToast(notebox_no){
 	xmlhttp.send("notebox_no=" + notebox_no);
 
 }
-//=============admin Toast 확인 아이콘 클릭시 
+//=============admin Toast 확인 아이콘 클릭시
 function confirmAdminToast(notebox_no){
-	
+
 	var xmlhttp = new XMLHttpRequest();
 
 	xmlhttp.onreadystatechange = function(){
@@ -313,7 +316,7 @@ function confirmAdminToast(notebox_no){
 
 			toastCount -=1;
 			adminToast.hide();
-			
+
 		}
 	};
 
@@ -324,19 +327,19 @@ function confirmAdminToast(notebox_no){
 
 }
 
-//===============Toast 열기, 닫기 
+//===============Toast 열기, 닫기
 function openCloseToast(){
-	
+
 	var toastBody = document.getElementById("toastBody");
 	//var showBar = document.getElementById("showBar");
 	var hideIcon = document.getElementById("hideIcon");
-	
+
 	if(toastBody.style.display == 'none'){
 		myToast.hide();
 		//showBar.style.display = 'flex';
 		toastBody.style.display = '';
 		hideIcon.setAttribute("class", "bi bi-chevron-double-down");
-		
+
 	}else{
 		myToast.hide();
 		//showBar.style.display = 'flex';
@@ -351,14 +354,14 @@ function toastInit(){
 	myToast = new bootstrap.Toast(document.getElementById('myToast'));
 	adminToast = new bootstrap.Toast(document.getElementById('adminToast'));
 
-	
+
 	setInterval(showToast, 2000);
 	setInterval(showAdminToast, 2000);
 	adminToast.hide();
-	
 
-	
-} 
+
+
+}
 
 window.addEventListener('DOMContentLoaded', toastInit);
 
@@ -366,20 +369,20 @@ window.addEventListener('DOMContentLoaded', toastInit);
 
 	<!---------------------------------------------------- Toast Start -------------------------------------------------->
 	<!-- Toast start -->
-	
+
 	 <c:choose>
-        <c:when test="${!empty sessionUser}"> 
-        
+        <c:when test="${!empty sessionUser}">
+
 		 	<div class="container">
 			  	<div class="col">
-					
-			  		<div class="toast-container position-fixed bottom-0 end-0 p-0" id="toastPlacement"  
+
+			  		<div class="toast-container position-fixed bottom-0 end-0 p-0" id="toastPlacement"
 			  			style="z-index: 11;background-color:#5587ED;width:350px;">
-			  			
+
 						 <div class="toast" id="myToast" role="alert" aria-live="assertive"><!-- data-bs-delay="10000"-->
-						 	
+
 						  	<div class="toast-header py-2" id="showBar" style="background-color:#5587ED;color:#FFFFFF;">
-						  
+
 							    <div class="col-8" style="margin-left:10px;font-size:15px;">
 								    <strong class="me-auto" >Message</strong>
 								    <small>new</small>
@@ -389,7 +392,7 @@ window.addEventListener('DOMContentLoaded', toastInit);
 				 					</span>
 				 				</div>
 			 					<div class="col" style="text-align:right;">
-									<button type="button" onclick="openCloseToast()" 
+									<button type="button" onclick="openCloseToast()"
 											style="border-width:0px;background-color:#5587ED;color:#FFFFFF">
 										<i class="bi bi-chevron-double-up" id="hideIcon" style="font-size:15px;"></i>
 									</button>
@@ -399,50 +402,48 @@ window.addEventListener('DOMContentLoaded', toastInit);
 								    	<i class="bi bi-x-square" style="font-size:13px;]background-color:rgb(0,0,0);color:#F7DAD9 ;"></i>
 								    </button>
 								</div-->
-							
+
 						  	</div>
-						  
+
 						  <div class="toast-body" id="toastBody" style="height:320px;width:350px;overflow-y: scroll;background-color:#FFFFFF;color:#5587ED;">
-						
-						  	
+
+
 						   </div>
-						  
-						</div>	
-					
+
+						</div>
+
 					</div>
-					
+
 				</div>
 			</div>
 			<!-- Toast end -->
-			
+
 			<!-- admin Toast start -->
 			<div class="container" >
 			  	<div class="col">
-			  	
-			  		<div class="toast-container position-fixed start-50 translate-middle-x" id="adminToastPlacement"  
+
+			  		<div class="toast-container position-fixed start-50 translate-middle-x" id="adminToastPlacement"
 			  			style="z-index: 11;top:30%;">
-			  			
+
 						 <div class="toast" id="adminToast" role="alert" aria-live="assertive"
 						 	style="width:600px;background-color:#E2F4FF;color:#FF6666;border-width:7px;border-color:#FF6666;"><!-- #AAFFA3-->
 						 	
 						  	<div class="toast-header py-2" style="background-color:#FF6666;color:#E2F4FF;font-size:13px;">
 						  		<h3 style="width:600px;text-align:left;"><i class="bi bi-bell" style="margin-right:10px;font-size:17px;"></i>notice</h3>
 						  	</div>
-						  	<div class="toast-body" id="adminToastBody" 
+						  	<div class="toast-body" id="adminToastBody"
 						  		style="height:200px;overflow-y:scroll;"></div>
-						  
-						</div>	
-					
+
+						</div>
+
 					</div>
-					
+
 				</div>
 			</div>
 			<!-- admin Toast end -->
-			
-			
+
+
 		</c:when>
 	</c:choose>
-	
+
 	<!-------------------------------------------------- Toast End -------------------------------------------------->
-	
-	
